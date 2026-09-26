@@ -1,0 +1,388 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* ============================================================
+   CODEHEALTH — Comic / Cartoon Dark Design System
+   ============================================================ */
+
+:root {
+  /* Core palette */
+  --bg:        #0D0D10;
+  --surface:   #14141A;
+  --surface-2: #1C1C25;
+  --surface-3: #24242F;
+
+  /* Borders — slightly thicker for comic feel */
+  --border-dim:    rgba(255,255,255,0.07);
+  --border-medium: rgba(255,255,255,0.12);
+  --border-pop:    rgba(255,255,255,0.18);
+
+  /* Accent green — vivid neon-lime */
+  --green:     #1DDF6B;
+  --green-dim: rgba(29,223,107,0.15);
+  --green-glow: 0 0 20px rgba(29,223,107,0.3), 0 0 40px rgba(29,223,107,0.12);
+
+  /* Warning / amber */
+  --amber:     #FFB830;
+  --amber-dim: rgba(255,184,48,0.15);
+
+  /* Danger */
+  --red:       #FF4D6D;
+  --red-dim:   rgba(255,77,109,0.15);
+
+  /* Info blue */
+  --blue:      #4E9EFF;
+  --blue-dim:  rgba(78,158,255,0.15);
+
+  /* Purple (AI) */
+  --purple:    #A78BFA;
+  --purple-dim: rgba(167,139,250,0.15);
+
+  /* Typography */
+  --text-primary:   #F4F4F8;
+  --text-secondary: #8B8BA8;
+  --text-dim:       #4D4D66;
+
+  /* Radius — chunky rounded for cartoon feel */
+  --r-sm:  8px;
+  --r-md:  14px;
+  --r-lg:  20px;
+  --r-xl:  26px;
+  --r-pill: 9999px;
+
+  /* Comic ink shadow */
+  --card-shadow:  0 4px 0 rgba(0,0,0,0.5);
+  --card-shadow-hover: 0 6px 0 rgba(0,0,0,0.6);
+  --pop-shadow:   0 8px 0 rgba(0,0,0,0.5);
+
+  /* shadcn tokens mapped */
+  --background:   var(--bg);
+  --foreground:   var(--text-primary);
+  --card:         var(--surface);
+  --card-foreground: var(--text-primary);
+  --popover:      var(--surface-2);
+  --popover-foreground: var(--text-primary);
+  --primary:      var(--green);
+  --primary-foreground: #0D0D10;
+  --secondary:    var(--surface-2);
+  --secondary-foreground: var(--text-primary);
+  --muted:        var(--surface-2);
+  --muted-foreground: var(--text-secondary);
+  --accent:       var(--green);
+  --accent-foreground: #0D0D10;
+  --destructive:  var(--red);
+  --border:       var(--border-dim);
+  --input:        rgba(255,255,255,0.08);
+  --ring:         var(--green);
+  --chart-1:      var(--green);
+  --chart-2:      var(--blue);
+  --chart-3:      var(--amber);
+  --chart-4:      var(--purple);
+  --chart-5:      var(--red);
+  --radius:       0.875rem;
+  --sidebar:      var(--surface);
+  --sidebar-foreground: var(--text-primary);
+  --sidebar-primary: var(--green);
+  --sidebar-primary-foreground: #0D0D10;
+  --sidebar-accent: var(--green-dim);
+  --sidebar-accent-foreground: var(--green);
+  --sidebar-border: var(--border-dim);
+  --sidebar-ring:  var(--green);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    background-color: #0D0D10;
+    color: #F4F4F8;
+    font-feature-settings: "ss01", "cv01";
+  }
+
+  html {
+    @apply font-sans;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #14141A; }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
+    border-radius: 9999px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
+}
+
+/* ============================================================
+   Utility classes — comic card system
+   ============================================================ */
+@layer utilities {
+
+  /* === CARD STYLES === */
+  .card-comic {
+    background: #14141A;
+    border: 1.5px solid rgba(255,255,255,0.09);
+    border-radius: 20px;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+    transition: box-shadow 180ms ease, transform 180ms ease, border-color 180ms ease;
+  }
+  .card-comic:hover {
+    border-color: rgba(255,255,255,0.16);
+    box-shadow: 0 6px 0 rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.07);
+    transform: translateY(-1px);
+  }
+
+  .card-comic-green {
+    background: #14141A;
+    border: 1.5px solid rgba(29,223,107,0.25);
+    border-radius: 20px;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.5), 0 0 18px rgba(29,223,107,0.08), inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  .card-comic-purple {
+    background: #14141A;
+    border: 1.5px solid rgba(167,139,250,0.25);
+    border-radius: 20px;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.5), 0 0 18px rgba(167,139,250,0.08), inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  /* === PILL BADGE === */
+  .badge-comic {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-width: 1.5px;
+    border-style: solid;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.4);
+  }
+  .badge-critical {
+    background: rgba(255,77,109,0.18);
+    color: #FF4D6D;
+    border-color: rgba(255,77,109,0.35);
+  }
+  .badge-high {
+    background: rgba(255,140,50,0.18);
+    color: #FF8C32;
+    border-color: rgba(255,140,50,0.35);
+  }
+  .badge-medium {
+    background: rgba(255,184,48,0.18);
+    color: #FFB830;
+    border-color: rgba(255,184,48,0.35);
+  }
+  .badge-low {
+    background: rgba(78,158,255,0.18);
+    color: #4E9EFF;
+    border-color: rgba(78,158,255,0.35);
+  }
+  .badge-green {
+    background: rgba(29,223,107,0.15);
+    color: #1DDF6B;
+    border-color: rgba(29,223,107,0.3);
+  }
+
+  /* === BUTTON STYLES === */
+  .btn-primary {
+    background: #1DDF6B;
+    color: #0D0D10;
+    font-weight: 800;
+    border-radius: 14px;
+    border: 1.5px solid rgba(29,223,107,0.6);
+    box-shadow: 0 4px 0 #0F8040, 0 0 20px rgba(29,223,107,0.25);
+    transition: all 120ms ease;
+    padding: 10px 20px;
+    font-size: 13px;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary:hover {
+    background: #22FF7A;
+    box-shadow: 0 2px 0 #0F8040, 0 0 28px rgba(29,223,107,0.35);
+    transform: translateY(1px);
+  }
+  .btn-primary:active {
+    box-shadow: 0 0px 0 #0F8040;
+    transform: translateY(3px);
+  }
+
+  .btn-ghost {
+    background: rgba(255,255,255,0.05);
+    color: #8B8BA8;
+    font-weight: 600;
+    border-radius: 12px;
+    border: 1.5px solid rgba(255,255,255,0.1);
+    box-shadow: 0 3px 0 rgba(0,0,0,0.35);
+    transition: all 120ms ease;
+    padding: 9px 18px;
+    font-size: 13px;
+  }
+  .btn-ghost:hover {
+    background: rgba(255,255,255,0.08);
+    color: #F4F4F8;
+    border-color: rgba(255,255,255,0.18);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.35);
+    transform: translateY(1px);
+  }
+
+  /* === NAV ACTIVE === */
+  .nav-active {
+    background: rgba(29,223,107,0.12);
+    color: #1DDF6B;
+    border: 1.5px solid rgba(29,223,107,0.22);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.3), inset 0 1px 0 rgba(29,223,107,0.1);
+  }
+
+  /* === GLOW DOT === */
+  .glow-dot-green {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: #1DDF6B;
+    box-shadow: 0 0 8px #1DDF6B, 0 0 16px rgba(29,223,107,0.5);
+  }
+
+  /* === PROGRESS BAR === */
+  .progress-track {
+    background: rgba(255,255,255,0.07);
+    border-radius: 9999px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .progress-fill-green {
+    background: linear-gradient(90deg, #0FBA52, #1DDF6B, #4DFFA0);
+    border-radius: 9999px;
+    box-shadow: 0 0 8px rgba(29,223,107,0.5);
+    transition: width 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .progress-fill-amber {
+    background: linear-gradient(90deg, #E08C00, #FFB830, #FFCF70);
+    border-radius: 9999px;
+    box-shadow: 0 0 8px rgba(255,184,48,0.4);
+  }
+  .progress-fill-red {
+    background: linear-gradient(90deg, #CC1A3A, #FF4D6D, #FF8099);
+    border-radius: 9999px;
+    box-shadow: 0 0 8px rgba(255,77,109,0.4);
+  }
+
+  /* === NOISE TEXTURE OVERLAY (subtle) === */
+  .surface-noise::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.4;
+  }
+
+  /* === SECTION LABEL === */
+  .section-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #4D4D66;
+  }
+
+  /* === CHUNKY NUMBER === */
+  .metric-number {
+    font-size: 2.25rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  /* === ANIMATED SCAN BAR === */
+  @keyframes scan-shimmer {
+    0% { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+  }
+  .scan-shimmer {
+    background: linear-gradient(90deg,
+      #0FBA52 0%,
+      #1DDF6B 40%,
+      #4DFFA0 50%,
+      #1DDF6B 60%,
+      #0FBA52 100%
+    );
+    background-size: 400px 100%;
+    animation: scan-shimmer 2s linear infinite;
+  }
+
+  /* === HOVER LIFT === */
+  .hover-lift {
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+
+  /* === FINDING BORDER ACCENT === */
+  .finding-critical { border-left: 3px solid #FF4D6D !important; }
+  .finding-high     { border-left: 3px solid #FF8C32 !important; }
+  .finding-medium   { border-left: 3px solid #FFB830 !important; }
+  .finding-low      { border-left: 3px solid #4E9EFF !important; }
+
+  /* === STRIPE DOT DECORATION === */
+  .dot-grid {
+    background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+}
