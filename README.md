@@ -1,68 +1,151 @@
-# IBM Hackathon GitHub Project Template
+# CodeHealth
 
-This GitHub project template is for IBM Hackathon projects. It includes pre-configured security files to help prevent accidental credential commits and potential account suspension during the hackathon.
+> AI-powered codebase health analysis for modern development teams.
 
-## 🚀 Quick Start
+CodeHealth is a developer-focused platform that analyzes GitHub repositories and turns codebase signals into a clear, actionable **Code Health Score**.
 
-1. **Use this template to create your project:**
-   - Click "Use this template" button above and select "Create a new repository"
-   - Name your repository
-   - Click "Create repository"
+Instead of relying on intuition or manually reviewing dozens of files, CodeHealth brings code quality, testing, documentation, security, maintainability, and complexity signals into a single dashboard.
 
-2. **Clone your new repository:**
-
-   ```bash
-   git clone https://github.com/HACKATHON-ORG/your-repo-name.git
-   cd your-repo-name
-   ```
-
-3. **Set up environment variables:**
-
-   ```bash
-   # Copy the example file
-   cp .env.example .env
-
-   # Edit .env with your actual credentials
-   # Use your preferred editor (nano, vim, code, etc.)
-   nano .env
-   ```
-
-4. **Verify .gitignore is working:**
-
-   ```bash
-   # This should NOT show .env file
-   git status
-
-   # This should confirm .env is ignored
-   git check-ignore -v .env
-   ```
-
-5. **Start developing!**
-
-## 🔒 Security Features
-
-This template includes:
-
-- **`.gitignore`** - Prevents committing credentials and live session files
-- **`.bobignore`** - Prevents AI assistants from logging credentials
-- **`.env.example`** - Template for your environment variables
-
-## 📋 Before Every Commit
-
-Always run this checklist:
-
-- [ ] Reviewed `git diff` for sensitive data
-- [ ] No hardcoded API keys or passwords
-- [ ] `.env` file is NOT in staged changes
-- [ ] No files with "credential" or "secret" in name
-- [ ] Used environment variables for all credentials
-
-## 🆘 Need Help?
-
-- Read [SECURITY.md](SECURITY.MD) for detailed guidelines
-- Contact hackathon support through mentor channel
-- Ask in the hackathon Slack workspace
+The platform combines **deterministic static analysis** with **IBM watsonx.ai** to explain findings and recommend practical improvements.
 
 ---
 
-**Remember:** Security is everyone's responsibility. When in doubt, ask for help!
+## 🚀 Why CodeHealth?
+
+As codebases grow, developers often struggle to answer simple but important questions:
+
+- Is this repository healthy?
+- Where are the biggest technical risks?
+- Are we accumulating technical debt?
+- Is test coverage improving or declining?
+- Which issues should developers address first?
+- Is the codebase ready for a release?
+
+Existing tools often provide large amounts of raw information without giving developers a simple way to understand the overall state of their codebase.
+
+**CodeHealth solves this by turning repository analysis into an understandable health dashboard.**
+
+---
+
+## ✨ Features
+
+### 📊 Code Health Dashboard
+
+Get an at-a-glance view of repository health.
+
+Key metrics include:
+
+- Overall Health Score
+- Code Quality
+- Test Coverage
+- Documentation
+- Security
+- Maintainability
+- Complexity
+- Open Findings
+- Health Trends
+
+---
+
+### 🔗 GitHub Repository Integration
+
+Connect a GitHub repository and analyze its source code.
+
+CodeHealth supports:
+
+- Public repositories
+- Private repositories with appropriate GitHub access
+- Branch selection
+- Repository metadata
+- Recursive source-file analysis
+
+Supported languages include:
+
+- TypeScript
+- JavaScript
+- TSX / JSX
+- Python
+- Java
+- Go
+
+---
+
+### 🔍 Repository Scanning
+
+CodeHealth performs deterministic repository analysis.
+
+The scanner evaluates signals such as:
+
+- Code quality
+- Test presence
+- Test coverage when real coverage data is available
+- Documentation
+- Complexity
+- Maintainability
+- Security-related patterns
+- Source-code structure
+
+The scanner intentionally avoids fabricating metrics.
+
+If reliable data is unavailable, CodeHealth reports that limitation rather than inventing a value.
+
+---
+
+### 🚨 Findings
+
+Detected issues are organized by severity:
+
+- Critical
+- High
+- Medium
+- Low
+
+Each finding can include:
+
+- Title
+- Description
+- Severity
+- File
+- Location
+- Category
+- Recommended action
+
+This allows developers to move from:
+
+> "My codebase has problems."
+
+to:
+
+> "These are the specific files and issues I should address."
+
+---
+
+### 🤖 AI Insights
+
+CodeHealth uses **IBM watsonx.ai** to interpret deterministic scan results.
+
+The AI layer is designed to:
+
+- Explain the current codebase health
+- Identify important improvement areas
+- Prioritize findings
+- Explain why issues matter
+- Recommend practical actions
+- Generate a developer-friendly summary
+
+The AI does **not** replace the deterministic scanner.
+
+Instead:
+
+```text
+GitHub Repository
+       ↓
+Repository Scanner
+       ↓
+Deterministic Metrics & Findings
+       ↓
+AI Context Builder
+       ↓
+IBM watsonx.ai
+       ↓
+AI Insights
