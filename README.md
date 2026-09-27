@@ -1,4 +1,4 @@
-# CodeHealth
+# CodePulse
 
 > AI-powered codebase health analysis for modern development teams.
 
