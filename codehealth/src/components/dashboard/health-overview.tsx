@@ -6,69 +6,102 @@ interface HealthOverviewProps {
   metrics: HealthMetrics;
 }
 
-const metricConfig: { key: keyof HealthMetrics; label: string; emoji: string }[] = [
-  { key: "codeQuality",    label: "Code Quality",    emoji: "✦" },
-  { key: "testCoverage",   label: "Testing",         emoji: "◈" },
-  { key: "documentation",  label: "Documentation",   emoji: "⊡" },
-  { key: "maintainability",label: "Maintainability", emoji: "⬡" },
-  { key: "complexity",     label: "Complexity",      emoji: "◎" },
-  { key: "security",       label: "Security",        emoji: "⬟" },
+const metricConfig: {
+  key: keyof HealthMetrics;
+  label: string;
+  icon: string;
+}[] = [
+  { key: "codeQuality",     label: "Code Quality",    icon: "◆" },
+  { key: "testCoverage",    label: "Test Coverage",   icon: "◈" },
+  { key: "documentation",   label: "Documentation",   icon: "◉" },
+  { key: "maintainability", label: "Maintainability", icon: "⬡" },
+  { key: "complexity",      label: "Complexity",      icon: "◎" },
+  { key: "security",        label: "Security",        icon: "◈" },
 ];
 
-function getBarColor(value: number) {
-  if (value >= 80) return { fill: "progress-fill-green", color: "#1DDF6B", glow: "rgba(29,223,107,0.5)" };
-  if (value >= 60) return { fill: "progress-fill-amber", color: "#FFB830", glow: "rgba(255,184,48,0.4)" };
-  return { fill: "progress-fill-red", color: "#FF4D6D", glow: "rgba(255,77,109,0.4)" };
+function getBarStyle(value: number): {
+  fillClass: string;
+  color: string;
+  label: string;
+} {
+  if (value >= 80)
+    return { fillClass: "progress-fill-green", color: "#14E678", label: "Good" };
+  if (value >= 60)
+    return { fillClass: "progress-fill-amber", color: "#F5A623", label: "Fair" };
+  return { fillClass: "progress-fill-red", color: "#F04060", label: "Poor" };
 }
 
 export function HealthOverview({ metrics }: HealthOverviewProps) {
   return (
-    <div className="card-comic p-5 h-full">
+    <div className="card-glass p-5 h-full">
       {/* Header */}
       <div className="flex items-center justify-between mb-5">
         <div>
-          <h2 className="text-sm font-black text-white">Code Health Overview</h2>
-          <p className="text-[11px] font-semibold uppercase tracking-wider mt-0.5" style={{ color: "#4D4D66" }}>
-            Current Scan
-          </p>
+          <h2
+            className="text-[13px] font-semibold leading-tight"
+            style={{ color: "#F0F0FF", letterSpacing: "-0.01em" }}
+          >
+            Health Overview
+          </h2>
+          <p className="section-label mt-0.5">Current scan</p>
         </div>
+
+        {/* Live badge */}
         <div
-          className="flex items-center gap-1.5 rounded-full px-3 py-1"
+          className="flex items-center gap-1.5 rounded-full px-2.5 py-1"
           style={{
-            background: "rgba(29,223,107,0.1)",
-            border: "1.5px solid rgba(29,223,107,0.2)",
-            boxShadow: "0 2px 0 rgba(0,0,0,0.3)",
+            background: "rgba(20,230,120,0.08)",
+            border: "1px solid rgba(20,230,120,0.18)",
           }}
         >
-          <div className="h-1.5 w-1.5 rounded-full" style={{ background: "#1DDF6B", boxShadow: "0 0 6px #1DDF6B" }} />
-          <span className="text-[10px] font-bold" style={{ color: "#1DDF6B" }}>LIVE</span>
+          <div
+            className="h-1.5 w-1.5 rounded-full pulse-glow"
+            style={{ background: "#14E678" }}
+          />
+          <span
+            className="text-[10px] font-semibold uppercase tracking-widest"
+            style={{ color: "#14E678" }}
+          >
+            Live
+          </span>
         </div>
       </div>
 
-      <div className="space-y-4">
-        {metricConfig.map(({ key, label, emoji }) => {
+      <div className="space-y-3.5">
+        {metricConfig.map(({ key, label, icon }, i) => {
           const value = metrics[key];
-          const { fill, color, glow } = getBarColor(value);
+          const { fillClass, color } = getBarStyle(value);
           return (
-            <div key={key}>
+            <div
+              key={key}
+              className="fade-up"
+              style={{ animationDelay: `${i * 60}ms` }}
+            >
               <div className="flex items-center justify-between mb-1.5">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs" style={{ color: "#4D4D66" }}>{emoji}</span>
-                  <span className="text-xs font-semibold" style={{ color: "#8B8BA8" }}>{label}</span>
+                <div className="flex items-center gap-1.5">
+                  <span
+                    className="text-[9px] leading-none"
+                    style={{ color: "#2A2A50" }}
+                  >
+                    {icon}
+                  </span>
+                  <span
+                    className="text-[12px] font-medium"
+                    style={{ color: "#7878A0" }}
+                  >
+                    {label}
+                  </span>
                 </div>
                 <span
-                  className="text-xs font-black"
-                  style={{ color, textShadow: `0 0 8px ${glow}` }}
+                  className="text-[12px] font-semibold tabular-nums"
+                  style={{ color, letterSpacing: "-0.01em" }}
                 >
-                  {value}%
+                  {value}
+                  <span style={{ color: "#404060", fontSize: "10px" }}>%</span>
                 </span>
               </div>
-              {/* Track */}
-              <div className="progress-track h-2.5">
-                <div
-                  className={`h-full ${fill}`}
-                  style={{ width: `${value}%` }}
-                />
+              <div className="progress-track h-1.5">
+                <div className={`h-full ${fillClass}`} style={{ width: `${value}%` }} />
               </div>
             </div>
           );

@@ -40,6 +40,7 @@ export function getSeverityColor(severity: Severity): string {
     case "high": return "text-orange-400";
     case "medium": return "text-yellow-400";
     case "low": return "text-blue-400";
+    default: return "text-gray-400";
   }
 }
 
@@ -49,13 +50,14 @@ export function getSeverityBg(severity: Severity): string {
     case "high": return "bg-orange-500/15 text-orange-400 border border-orange-500/20";
     case "medium": return "bg-yellow-500/15 text-yellow-400 border border-yellow-500/20";
     case "low": return "bg-blue-500/15 text-blue-400 border border-blue-500/20";
+    default: return "bg-gray-500/15 text-gray-400 border border-gray-500/20";
   }
 }
 
 export function getHealthColor(score: number): string {
-  if (score >= 80) return "#22C55E";
-  if (score >= 60) return "#F59E0B";
-  return "#EF4444";
+  if (score >= 80) return "#14E678";
+  if (score >= 60) return "#F5A623";
+  return "#F04060";
 }
 
 export function getHealthTextColor(score: number): string {
@@ -75,6 +77,8 @@ export function getRepositoryStatusBadge(status: RepositoryStatus): {
       return { label: "Needs Attention", className: "bg-yellow-500/15 text-yellow-400 border border-yellow-500/20" };
     case "critical":
       return { label: "Critical", className: "bg-red-500/15 text-red-400 border border-red-500/20" };
+    default:
+      return { label: "Unknown", className: "bg-gray-500/15 text-gray-400 border border-gray-500/20" };
   }
 }
 
@@ -91,6 +95,10 @@ export function getScanStatusBadge(status: ScanStatus): {
       return { label: "Failed", className: "bg-red-500/15 text-red-400 border border-red-500/20" };
     case "pending":
       return { label: "Pending", className: "bg-gray-500/15 text-gray-400 border border-gray-500/20" };
+    case "queued":
+      return { label: "Queued", className: "bg-gray-500/15 text-gray-400 border border-gray-500/20" };
+    default:
+      return { label: "Unknown", className: "bg-gray-500/15 text-gray-400 border border-gray-500/20" };
   }
 }
 
@@ -105,6 +113,8 @@ export function getFindingStatusBadge(status: FindingStatus): {
       return { label: "Resolved", className: "bg-green-500/15 text-green-400 border border-green-500/20" };
     case "ignored":
       return { label: "Ignored", className: "bg-gray-500/15 text-gray-400 border border-gray-500/20" };
+    default:
+      return { label: "Unknown", className: "bg-gray-500/15 text-gray-400 border border-gray-500/20" };
   }
 }
 

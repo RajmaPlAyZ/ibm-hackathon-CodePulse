@@ -3,7 +3,7 @@
 // ============================================================
 
 export type Severity = "critical" | "high" | "medium" | "low";
-export type ScanStatus = "completed" | "running" | "failed" | "pending";
+export type ScanStatus = "completed" | "running" | "failed" | "pending" | "queued";
 export type RepositoryStatus = "healthy" | "needs-attention" | "critical";
 export type FindingCategory =
   | "security"
